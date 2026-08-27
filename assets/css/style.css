@@ -88,6 +88,10 @@ img{max-width:100%;display:block}
   font-size:clamp(3.4rem,11vw,8rem);line-height:.98;margin-bottom:14px}
 .hero .sub{font-size:clamp(1.25rem,3.4vw,2rem);font-weight:300;color:#efeae1;max-width:22ch;margin-bottom:36px;line-height:1.3}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+/* centered hero variant */
+.hero-center{display:flex;flex-direction:column;align-items:center;text-align:center;padding-block:130px 90px}
+.hero-center .sub{max-width:26ch}
+.hero-center .hero-actions{justify-content:center}
 .scroll-hint{position:absolute;inset-block-end:26px;inset-inline-start:50%;transform:translateX(-50%);z-index:2;
   color:var(--muted);font-size:12px;letter-spacing:.24em;display:flex;flex-direction:column;align-items:center;gap:8px}
 .scroll-hint span{width:1px;height:44px;background:linear-gradient(var(--accent),transparent);animation:pulse 2s var(--ease) infinite}
@@ -268,20 +272,26 @@ section{position:relative}
    v2 ENHANCEMENTS — hero form, floating bar, popup, legal, mobile
    ================================================================ */
 
-/* ---- HERO two-column with lead form ---- */
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:52px;align-items:center;width:100%}
-.hero-text{min-width:0}
+/* ---- HERO actions ---- */
 .hero-actions{gap:12px}
 .hero-actions .btn{padding:14px 26px;font-size:15.5px}
 
-.hero-form-card{
-  background:rgba(16,16,20,.66);backdrop-filter:blur(18px);
-  border:1px solid var(--line-2);border-radius:20px;padding:30px 28px;
-  box-shadow:0 40px 90px -30px rgba(0,0,0,.85);align-self:center}
-.hero-form-card h3{font-size:23px;margin-bottom:6px}
-.hero-form-card .hfc-sub{color:var(--muted);font-size:14.5px;margin-bottom:22px}
-.hero-form-card .field{margin-bottom:13px}
-.hero-form-card .btn{width:100%;justify-content:center;margin-top:4px}
+/* ---- LEAD BAND (between hero and about) ---- */
+.lead-band{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-block:1px solid var(--line);
+  padding-block:56px}
+.lead-band-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.lead-band-text .eyebrow{margin-bottom:12px}
+.lead-band-text h2{font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;margin-bottom:12px}
+.lead-band-text h2 .serif{font-family:"Playfair Display",serif;font-style:italic;color:var(--accent-2);display:block;font-size:.82em}
+.lead-band-text p{color:var(--muted);font-size:16px;line-height:1.7;max-width:40ch}
+.lead-band-form{background:rgba(16,16,20,.72);backdrop-filter:blur(18px);
+  border:1px solid var(--line-2);border-radius:20px;padding:28px 26px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}
+.lead-band-form .lb-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.lead-band-form .lb-fields .field:first-child{grid-column:1 / -1}
+.lead-band-form .field{margin-bottom:0}
+.lead-band-form .consent{margin-block:16px 4px}
+.lead-band-form .btn{width:100%;justify-content:center;margin-top:6px}
 
 /* ---- success state ---- */
 .form-success{text-align:center;padding:26px 10px;animation:fadeUp .5s var(--ease)}
@@ -358,25 +368,23 @@ body{padding-bottom:88px}
 .legal-body strong{color:var(--ink)}
 
 /* ================= RESPONSIVE v2 ================= */
-@media(max-width:980px){
-  .hero-grid{grid-template-columns:1fr;gap:30px}
-  .hero-form-card{max-width:460px}
+@media(max-width:860px){
+  .lead-band-inner{grid-template-columns:1fr;gap:26px}
+  .lead-band-text p{max-width:none}
 }
 @media(max-width:560px){
-  .hero-content{padding-block:96px 76px}
-  .hero-form-card{padding:24px 20px;border-radius:16px}
-  .hero-form-card h3{font-size:20px}
+  .hero-center{padding-block:100px 84px}
   .hero-actions{width:100%}
   .hero-actions .btn{flex:1 1 100%;justify-content:center}
-  .floatbar{inset-inline:10px;inset-block-end:10px;width:auto;max-width:none;gap:6px;padding:7px;justify-content:center}
-  .fb-btn{padding:11px 12px;font-size:13.5px;gap:6px;flex:1;justify-content:center}
-  .fb-btn svg{width:17px;height:17px}
+  .lead-band{padding-block:44px}
+  .lead-band-form{padding:22px 18px;border-radius:16px}
+  .lead-band-form .lb-fields{grid-template-columns:1fr}
+  .lead-band-form .lb-fields .field:first-child{grid-column:auto}
+  .floatbar{inset-inline:10px;inset-block-end:10px;width:auto;max-width:none;gap:8px;padding:8px;justify-content:center}
+  .fb-btn{padding:12px 14px;font-size:14px;gap:7px;flex:1;justify-content:center}
+  .fb-btn svg{width:18px;height:18px}
   .modal-card{padding:34px 22px 26px}
   .modal-title{font-size:22px}
-  body{padding-bottom:78px}
+  body{padding-bottom:80px}
   .foot-legal{gap:8px 18px}
-}
-@media(max-width:380px){
-  .fb-call span,.fb-wa span{display:none}
-  .fb-call,.fb-wa{padding:11px 14px}
 }
